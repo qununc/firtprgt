@@ -1,0 +1,225 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsthm,amsmath, amsopn}
+\usepackage{bm}
+\usepackage{setspace}
+\usepackage{graphics, graphicx}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{arrows}
+\usepackage{amsopn}
+\usepackage{commath}
+\pgfplotsset{compat=1.5}
+\DeclareMathOperator{\g}{g}
+\DeclareMathOperator{\func}{f}
+\DeclareMathOperator{\z}{z}
+\DeclareMathOperator{\grad}{grad\,}
+
+
+\title{firtprgt}
+\author{alexltv99 }
+\date{September 2017}
+
+\begin{document}
+
+\centerline{\Large Домашнее задание}
+\centerline{\bf\LARGE ''Элементарные функции и их пределы''\\[6pt]}
+\centerline{\Large Выполнил: студент группы ФН4--11Б, \emph{Литвинов Александр Андреевич}\\[6pt]}
+\centerline{\Large Вариант: 17}
+\centerline{\Large Дата: \today}
+
+% ---------------------------- Problem 1----------------------------------
+\subsubsection*{\center Задача 1.}
+{\bf Условие.~}
+Найти область определения функции.
+$$
+y(x) = \sqrt{\log_x (3x-1)}
+$$	
+{\bf Решение.~}
+$D_f: 
+\log_x (3x-1)\geq0
+\Leftrightarrow
+\begin{cases}
+x>1\\\frac{1}{3}<x\leq\frac{2}{3}
+\end{cases}
+\Leftrightarrow x \in (\frac{1}{3};\,\frac{2}{3}] \cup (1;\,+\infty).
+$
+
+% ---------------------------- Problem 2----------------------------------
+\subsubsection*{\center Задача2.}
+{\bf Условие.~}
+Исследовать функцию на чётность (нёчетность).
+$$
+y(x) = \frac{\sin3x}{x+1}
+$$	
+{\bf Решение.~}
+$$ 
+y(-x) = \frac{\sin-3x}{-x+1} = \frac{\-sin3x}{-(x+1)+2} = \frac{\sin3x}{(x+1)-2}
+$$	
+Отсюда, \emph{$y(x)$ -- функция общего вида.}
+\newpage
+% ---------------------------- Problem 3----------------------------------
+\subsubsection*{\center Задача 3.}
+{\bf Условие.~}
+Используя элементарные преобразования, построить эскизы графиков функций (а) -- (д).
+$$
+\arraycolsep=10.4pt\def\arraystretch{2.2}
+\begin{array}{cc}
+\text{3(а):} & y(x) = \ctg(2|x|+\pi/4), \\
+\text{3(б):} & y(x) = \abs{\dfrac{4x+6}{x+3}}, \\
+\text{3(в):} & y(x) = 2-3\lg(x+1), \\
+\text{3(г):} & y(x) = \dfrac{1}{3} 2^{2x+1} - \dfrac{4}{3}, \\[8pt]
+\text{3(д):} & y(x) = \dfrac{3\pi}{8} + \dfrac{3}{2}\arctg(2x-3).
+\end{array}
+$$
+
+{\bf Решение.~}
+% ---------------- Problem 3A---------------
+Последовательность элементарных преобразований графика функции 3(а).
+\begin{center}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=4cm, samples=250, domain=-3*pi:3*pi,legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick, samples=250, domain=-3*pi:3*pi, restrict y to domain=-8:8]{cot(deg(x))};
+	\addlegendentry{$\ctg(x)$}
+	\addplot[blue, ultra thick, samples=250, domain=-3*pi:3*pi, restrict y to domain=-8:8]{cot(deg(abs(x)+pi/8))};
+	\addlegendentry{$\ctg(|x|+\pi/8)$}
+	\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=4cm, samples=250, domain=-2*pi:2*pi,legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick, samples=250, domain=-3*pi:3*pi, restrict y to domain=-8:8]{cot(deg(abs(x)+pi/8))};
+	\addlegendentry{$\ctg(|x|+\pi/8)$}
+	\addplot[blue, ultra thick, samples=250, domain=-3*pi:3*pi, restrict y to domain=-8:8]{cot(deg(2*abs(x)+pi/4))};
+	\addlegendentry{$\ctg(2|x|+\pi/4)$}
+	\end{axis}
+\end{tikzpicture}
+\newline\newline\newline
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    legend style={draw=none},
+    legend pos=outer north east,
+    legend cell align=center,
+    legend image post style={mark=*},
+    xlabel = $x$,
+    ylabel = {$y(x)$},
+]
+
+\addlegendentry{$\ctg(2|x|+\pi/4)$}
+
+\addplot [
+    domain=-10:10, 
+    restrict y to domain=-10:10,
+    samples=1000, 
+    color=blue,
+    ]
+    {cot(deg(2*abs(x)+pi/4))};
+ 
+\end{axis}
+\end{tikzpicture}
+\end{center}
+% ---------------- Problem 3Б---------------
+Последовательность элементарных преобразований графика функции 3(б).\\
+Преобразуем $y(x)$: 
+$$y(x)=\abs{\dfrac{4x+6}{x+3}}=\abs{\dfrac{4(x+3)-6}{x+3}}=\abs{4-\dfrac{6}{x+3}}$$
+
+\begin{center}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20, legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick]{1/x};
+	\addlegendentry{$\frac{1}{x}$}
+	\addplot[blue, ultra thick]{1/x+4};
+	\addlegendentry{$\frac{1}{x}+4$}	
+	\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20,legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick]{1/x+4};
+	\addlegendentry{$\frac{1}{x}+4$}	
+	\addplot[blue, ultra thick]{1/(x+3)+4};
+	\addlegendentry{$\frac{1}{x+3}+4$}
+	\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20,legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick]{1/(x+3)+4};
+	\addlegendentry{$\frac{1}{x+3}+4$}
+	\addplot[blue, ultra thick]{-1/(x+3)+4};
+	\addlegendentry{$4-\frac{1}{x+3}$}	
+	\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20,legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick]{-1/(x+3)+4};
+	\addlegendentry{$4-\frac{1}{x+3}$}
+	\addplot[blue, ultra thick]{-6/(x+3)+4};
+	\addlegendentry{$4-\frac{6}{x+3}$}	
+	\end{axis}
+\end{tikzpicture}
+\newline\newline\newline
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = $x$,
+    ylabel = {$y(x)$},
+    legend style={draw=none},
+    legend pos=outer north east,
+    legend cell align=center,
+    legend image post style={mark=*},
+]
+
+
+\addplot [
+    domain=-10:10, 
+    restrict y to domain=-20:20,
+    samples=1000, 
+    color=blue,
+    ]
+    {-6/(x+3)+4};
+    \addlegendentryexpanded{$\abs{\dfrac{4x+6}{x+3}}$}
+    \addlegendimage{empty legend}
+
+ 
+\end{axis}
+\end{tikzpicture}
+\end{center}
+% ---------------- Problem 3В---------------
+Последовательность элементарных преобразований графика функции 3(в).\\
+\begin{center}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-6:6,legend pos=outer north east]
+	\addplot[blue, ultra thick]{ln(abs(x))/ln(3)};
+	\addlegendentry{$\log_3{|x|}$}	
+	\addplot[red, dotted, ultra thick]{ln(x)/ln(3)};
+	\addlegendentry{$\log_3{x}$}	
+	\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-6:6,legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick]{ln(abs(x))/ln(3)};
+	\addlegendentry{$\log_3{|x|}$}	
+	\addplot[blue, ultra thick]{ln(abs(x+1))/ln(3)};
+	\addlegendentry{$\log_3{|x+1|}$}	
+	\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-6:6,legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick]{ln(abs(x+1))/ln(3)};
+	\addlegendentry{$\log_3{|x+1|}$}	
+	\addplot[blue, ultra thick]{-ln(abs(x+1))/ln(3)};
+	\addlegendentry{$-\log_3{|x+1|}$}	
+	\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-6:6,legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick]{-ln(abs(x+1))/ln(3)};
+	\addlegendentry{$-\log_3{|x+1|}$}	
+	\addplot[blue, ultra thick]{1-ln(abs(x+1))/ln(3)};
+	\addlegendentry{$1-\log_3{|x+1|}$}	
+	\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\end{document}
