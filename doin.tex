@@ -129,30 +129,30 @@ $$y(x)=\abs{\dfrac{4x+6}{x+3}}=\abs{\dfrac{4(x+3)-6}{x+3}}=\abs{4-\dfrac{6}{x+3}
 	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20, legend pos=outer north east]
 	\addplot[blue, dotted, ultra thick]{1/x};
 	\addlegendentry{$\frac{1}{x}$}
-	\addplot[blue, ultra thick]{1/x+4};
-	\addlegendentry{$\frac{1}{x}+4$}	
+	\addplot[blue, ultra thick]{6/x};
+	\addlegendentry{$\frac{6}{x}$}	
+	\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20, legend pos=outer north east]
+	\addplot[blue, dotted, ultra thick]{6/x};
+	\addlegendentry{$\frac{6}{x}$}	
+	\addplot[blue, ultra thick]{6/(x+3};
+	\addlegendentry{$\frac{6}{x+3}$}	
 	\end{axis}
 \end{tikzpicture}
 \begin{tikzpicture}
 	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20,legend pos=outer north east]
-	\addplot[blue, dotted, ultra thick]{1/x+4};
-	\addlegendentry{$\frac{1}{x}+4$}	
-	\addplot[blue, ultra thick]{1/(x+3)+4};
-	\addlegendentry{$\frac{1}{x+3}+4$}
+	\addplot[blue, dotted, ultra thick]{6/(x+3)};
+	\addlegendentry{$\frac{6}{x+3}$}
+	\addplot[blue, ultra thick]{-6/(x+3)};
+	\addlegendentry{$-\frac{6}{x+3}$}	
 	\end{axis}
 \end{tikzpicture}
 \begin{tikzpicture}
 	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20,legend pos=outer north east]
-	\addplot[blue, dotted, ultra thick]{1/(x+3)+4};
-	\addlegendentry{$\frac{1}{x+3}+4$}
-	\addplot[blue, ultra thick]{-1/(x+3)+4};
-	\addlegendentry{$4-\frac{1}{x+3}$}	
-	\end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}
-	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-10:10, restrict y to domain=-20:20,legend pos=outer north east]
-	\addplot[blue, dotted, ultra thick]{-1/(x+3)+4};
-	\addlegendentry{$4-\frac{1}{x+3}$}
+	\addplot[blue, dotted, ultra thick]{-6/(x+3)};
+	\addlegendentry{$-\frac{6}{x+3}$}
 	\addplot[blue, ultra thick]{-6/(x+3)+4};
 	\addlegendentry{$4-\frac{6}{x+3}$}	
 	\end{axis}
@@ -179,8 +179,6 @@ $$y(x)=\abs{\dfrac{4x+6}{x+3}}=\abs{\dfrac{4(x+3)-6}{x+3}}=\abs{4-\dfrac{6}{x+3}
     {-6/(x+3)+4};
     \addlegendentryexpanded{$\abs{\dfrac{4x+6}{x+3}}$}
     \addlegendimage{empty legend}
-
- 
 \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -189,35 +187,59 @@ $$y(x)=\abs{\dfrac{4x+6}{x+3}}=\abs{\dfrac{4(x+3)-6}{x+3}}=\abs{4-\dfrac{6}{x+3}
 \begin{center}
 \begin{tikzpicture}
 	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-6:6,legend pos=outer north east]
-	\addplot[blue, ultra thick]{ln(abs(x))/ln(3)};
-	\addlegendentry{$\log_3{|x|}$}	
-	\addplot[red, dotted, ultra thick]{ln(x)/ln(3)};
-	\addlegendentry{$\log_3{x}$}	
+	\addplot[blue, ultra thick]{log10(x)};
+	\addlegendentry{$\lg{x}$}	
+	\addplot[red, dotted, ultra thick]{3*log10(x)};
+	\addlegendentry{$3\lg{x}$}	
 	\end{axis}
 \end{tikzpicture}
 \begin{tikzpicture}
 	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-6:6,legend pos=outer north east]
-	\addplot[blue, dotted, ultra thick]{ln(abs(x))/ln(3)};
-	\addlegendentry{$\log_3{|x|}$}	
-	\addplot[blue, ultra thick]{ln(abs(x+1))/ln(3)};
-	\addlegendentry{$\log_3{|x+1|}$}	
+	\addplot[blue, dotted, ultra thick]{3*log10(x)};
+	\addlegendentry{$3\lg{x}$}	
+	\addplot[blue, ultra thick]{3*log10(x+1)};
+	\addlegendentry{$3\lg{x+1}$}	
 	\end{axis}
 \end{tikzpicture}
 \begin{tikzpicture}
 	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-6:6,legend pos=outer north east]
-	\addplot[blue, dotted, ultra thick]{ln(abs(x+1))/ln(3)};
-	\addlegendentry{$\log_3{|x+1|}$}	
-	\addplot[blue, ultra thick]{-ln(abs(x+1))/ln(3)};
-	\addlegendentry{$-\log_3{|x+1|}$}	
+	\addplot[blue, dotted, ultra thick]{3*log10(x+1)};
+	\addlegendentry{$3\lg{x+1}$}
+	\addplot[blue, ultra thick]{-3*log10(x+1)};
+	\addlegendentry{$-3\lg{x+1}$}	
 	\end{axis}
 \end{tikzpicture}
 \begin{tikzpicture}
 	\begin{axis}[width=12cm, height=6cm, samples=250, domain=-6:6,legend pos=outer north east]
-	\addplot[blue, dotted, ultra thick]{-ln(abs(x+1))/ln(3)};
-	\addlegendentry{$-\log_3{|x+1|}$}	
-	\addplot[blue, ultra thick]{1-ln(abs(x+1))/ln(3)};
-	\addlegendentry{$1-\log_3{|x+1|}$}	
+	\addplot[blue, dotted, ultra thick]{-3*log10(x+1)};
+	\addlegendentry{$-3\lg{x+1}$}
+	\addplot[blue, ultra thick]{2-3*log10(x+1)};
+	\addlegendentry{$2-3\lg{x+1}$}
 	\end{axis}
+\end{tikzpicture}
+\newline\newline\newline
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = $x$,
+    ylabel = {$y(x)$},
+    %legend style={draw=none},
+    legend pos=outer north east,
+    legend cell align=center,
+    legend image post style={mark=*},
+]
+
+
+\addplot [
+    domain=-10:10, 
+    %restrict y to domain=-20:20,
+    samples=1000, 
+    color=blue,
+    ]
+    {2-3*log10(x+1)};
+    \addlegendentryexpanded{$2-3\lg{x+1}$}
+    \addlegendimage{empty legend}
+\end{axis}
 \end{tikzpicture}
 \end{center}
 
