@@ -1,0 +1,366 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsthm,amsmath, amsopn, empheq}
+\usepackage{bm}
+\usepackage{setspace}
+\usepackage{graphics, graphicx}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{arrows}
+\usepackage[ugly]{nicefrac}
+\usepackage{amsopn}
+\usepackage{commath}
+\pgfplotsset{compat=1.5}
+\DeclareMathOperator{\g}{g}
+\DeclareMathOperator{\func}{f}
+\DeclareMathOperator{\z}{z}
+\DeclareMathOperator{\grad}{grad\,}
+
+\usepackage{array} 
+%\usepackage{mathtools} % The \coloneq they refer to comes from here, yes?
+
+\usepackage{pgfplots}
+\usepackage{tikz,tkz-fct}
+\usetikzlibrary{arrows}
+
+\newcommand{\eps}{\varepsilon}
+
+
+\begin{document}
+\centerline{\Large Домашнее задание}
+\centerline{\bf\LARGE ''Пределы и непрерывность''\\[6pt]}
+\centerline{\Large Выполнил: студент группы ФН4--11Б, \emph{Литвинов Александр Андреевич}\\[6pt]}
+\centerline{\Large Вариант: 17}
+\centerline{\Large Дата: \today}
+
+% ---------------------------- Problem 1----------------------------------
+\subsubsection*{\center Задача № 1.}
+{\bf Условие.~}
+Дана последовательность $\{a_n\} = \dfrac{4+2n}{1-3n}$ и число $c=-\dfrac{2}{3}$. Доказать, что 
+$$\lim\limits_{n\rightarrow\infty}a_n=c,$$
+а именно, для каждого сколь угодно малого числа $\eps>0$ найти наименьшее натуральное число 
+$N=N(\eps)$ такое, что $|a_n-c|<\eps$ для всех номеров $n>N(\eps)$.
+Заполнить таблицу
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$\eps$ &  $0{,}1$ & $0{,}01$ & $0{,}001$ \\
+		\hline
+		$N(\eps)$ & & & \\
+		\hline
+	\end{tabular}
+\end{center}
+{\bf Решение.~}	
+Рассмотрим неравенство $a_n-c<\eps,\,\forall\eps>0$, учитывая выражение для $a_n$ и значение $c$ из условия варианта,
+получим
+$$
+\biggl|\frac{4+2n}{1-3n}+\frac{2}{3}\biggr| < \eps.
+$$
+Неравенство запишем в виде двойного неравентсва и приведём выражение под знаком модуля к общему знаменателю,
+получим
+$$
+-\eps < \frac{14}{3(1-3n)} < \eps.
+$$
+
+\begin{empheq}[left=\empheqlbrace]{align}
+\frac{14}{3(1-3n)} > -\eps\\
+\frac{14}{3(1-3n)} < \eps
+\end{empheq}
+
+\begin{empheq}[left=\empheqlbrace]{align}
+n>\frac{14}{9\eps}+\frac{1}{3}\\
+n<-\frac{14}{9\eps}+\frac{1}{3}
+\end{empheq}
+
+Поскольку $0 < \eps < 1$, а $n\in\mathbf{N}$ (4) не может быть. Следовательно,
+$$
+\begin{array}{c}
+n>\dfrac{14}{9\eps}+\dfrac{1}{3}, 							\\[8pt]
+N(\eps) = \Biggl[\,\dfrac{14}{9\eps}+\dfrac{1}{3}\,\Biggr],
+\end{array}
+$$
+
+где $[\phantom{a}]$ --- целая часть числа.
+
+Заполним таблицу:
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$\eps$ &  $0{,}1$ & $0{,}01$ & $0{,}001$ \\
+		\hline
+		$N(\eps)$ & 16 & 156 & 1556 \\
+		\hline
+	\end{tabular}
+\end{center}
+\textbf{Проверка:}
+$$
+\begin{array}{l}
+|a_{17} - c| = \dfrac{7}{75} < 0{,}1,			\\[10pt]
+|a_{157} - c| = \dfrac{7}{705} < 0{,}01,	\\[10pt]
+|a_{1557} - c| = \dfrac{7}{7005} < 0{,}001.
+\end{array}
+$$
+
+% ---------------------------- Problem 2----------------------------------
+\subsubsection*{\center Задача № 2.}
+{\bf Условие.~}
+Вычислить пределы функций
+$$
+\begin{array}{cc}
+\text{\bf(а):} & \lim\limits_{x\rightarrow -3}\dfrac{(x^2+2x-3)^2}{x^3+4x^2-9}, \\[10pt]
+\text{\bf(б):} & \lim\limits_{x\rightarrow \infty}\dfrac{3x^2-2\sqrt[4]{x^8-8x}}{\sqrt{x^4+12}-4x^2}, \\[10pt]
+\text{\bf(в):} & \lim\limits_{x\rightarrow 1}\dfrac{\sqrt{x+1}-\sqrt{2}}{\sqrt[3]{x^2-1}}, \\[10pt]
+\text{\bf(г):} & \lim\limits_{x\rightarrow 0}\biggl(\dfrac{\cos{x}}{\cos{2x}}\biggr)^\frac{1}{3x^2}, \\[10pt]
+\text{\bf(д):} & \lim\limits_{x\rightarrow 0+}\biggl(\dfrac{2^{x^{4}}-1}{\ln^2{\cos{2x}}}\biggr)^{\frac{x+2}{x}}, \\[10pt]
+\text{\bf(е):} & \lim\limits_{x\rightarrow \pi}\dfrac{1+\cos{3x}}{\sin^2(7x)}.
+\end{array}
+$$
+{\bf Решение.~}\\
+\text{\bf(а):}
+$$
+\begin{array}{l}
+\lim\limits_{x\rightarrow -3}\dfrac{(x^2+2x-3)^2}{x^3+4x^2-9} =
+\biggr[\dfrac{0}{0}\biggl] = 
+\lim\limits_{x\rightarrow -3}\dfrac{(x-1)^2(x+3)^2}{(x+3)(x^2+x-3)} = 
+\lim\limits_{x\rightarrow -3}\dfrac{(x-1)^2(x+3)}{(x^2+x-3)} = \\
+\lim\limits_{x\rightarrow -3}\dfrac{(-3-1)^2(-3+3)}{((-3)^2+(-3)-3)} =
+\lim\limits_{x\rightarrow -3}\dfrac{(-4)^2*0}{3} =
+0.
+\end{array}
+$$	
+\text{\bf(б):}
+$$
+\begin{array}{l}
+\lim\limits_{x\rightarrow \infty}\dfrac{3x^2-2\sqrt[4]{x^8-8x}}{\sqrt{x^4+12}-4x^2} =
+\biggr[\dfrac{\infty}{\infty}\biggl] = 
+\lim\limits_{x\rightarrow \infty}\dfrac{x^2\biggl(3-2\sqrt[4]{1-\dfrac{8}{x^7}}\biggr)}{x^2\biggl(\sqrt{1+\dfrac{12}{x^4}}-4\biggr)} = 
+\lim\limits_{x\rightarrow \infty}\dfrac{3-2\sqrt[4]{1-0}}{\sqrt{1+0}-4} = -\dfrac{1}{3}.
+\end{array}
+$$	
+\text{\bf(в):}
+$$
+\begin{array}{l}
+\lim\limits_{x\rightarrow 1}\dfrac{\sqrt{x+1}-\sqrt{2}}{\sqrt[3]{x^2-1}} =
+\biggr[\dfrac{\infty}{\infty}\biggl] = 
+\lim\limits_{x\rightarrow 1}\dfrac{(\sqrt{x+1}-\sqrt{2})(\sqrt{x+1}+\sqrt{2})}{\sqrt[3]{x^2-1}(\sqrt{x+1}+\sqrt{2})} = \\
+\lim\limits_{x\rightarrow 1}\dfrac{x-1}{(x-1)^{\frac{1}{3}}(x+1)^{\frac{1}{3}}(\sqrt{1+1}+\sqrt{2})} = 
+\lim\limits_{x\rightarrow 1}\dfrac{(x-1)^{\frac{2}{3}}}{2\sqrt{2}(x+1)^{\frac{1}{3}}} =  
+\lim\limits_{x\rightarrow 1}\dfrac{(1-1)^{\frac{2}{3}}}{2\sqrt{2}(1+1)^{\frac{1}{3}}} = 
+0.
+\end{array}
+$$
+\text{\bf(г):}	
+$$
+\begin{array}{l}
+\lim\limits_{x\rightarrow 0}\biggl(\dfrac{\cos{x}}{\cos{2x}}\biggr)^\frac{1}{3x^2} = 
+\biggr[1^{\infty}\biggl] = 
+\lim\limits_{x\rightarrow 0}\biggl(1+\dfrac{\cos{x}-\cos{2x}}{\cos{2x}}\biggr)^{\dfrac{\cos{2x}}{\cos{x}-\cos{2x}}\dfrac{1}{3x^2}\dfrac{\cos{x}-\cos{2x}}{\cos{2x}}} = \\
+\mathbf{e}^{\lim\limits_{x\rightarrow 0}{(\cos{x}-\cos{2x})/(3x^2\cos{2x})}} = 
+\mathbf{e}^{\lim\limits_{x\rightarrow 0}{2\sin{\frac{3x}{2}}\sin{\frac{x}{2}}}/(3x^2\cos{2x})} = 
+\biggl|
+\begin{array}{l}
+\sin{\frac{3x}{2}} \sim \frac{3x}{2} \\
+\sin{\frac{x}{2}} \sim \frac{x}{2} \\
+\cos{2x} \sim \frac{(2x)^2}{2}+1
+\end{array}
+\biggr| = \\
+\mathbf{e}^{\lim\limits_{x\rightarrow 0}{(2\frac{3x}{2}\frac{x}{2})/(3x^2(2x^2+1)}} = 
+\mathbf{e}^{\lim\limits_{x\rightarrow 0}{\frac{1}{2}}} =
+\sqrt{\mathbf{e}}.
+\end{array}
+$$
+\text{\bf(д):}
+$$
+\begin{array}{l}
+\lim\limits_{x\rightarrow 0+}\biggl(\dfrac{2^{x^{4}}-1}{\ln^2{\cos{2x}}}\biggr)^{\frac{x+2}{x}} = 
+\biggr[\biggr(\dfrac{0}{0}\biggl)^{\infty}\biggl] = 
+\biggl|
+\begin{array}{l}
+2^{x^{4}} \sim x^4\ln2+1\\
+\ln{\cos{2x}} \sim \cos{2x}-1
+\end{array}
+\biggr| = \\
+\lim\limits_{x\rightarrow 0+}\biggl(\dfrac{x^4\ln2}{(\cos{2x}-1)^2}\biggr)^{\frac{x+2}{x}} = 
+\biggl|
+\begin{array}{l}
+x^4 \sim \sin{x^4} \\
+1-\cos{2x} \sim \frac{(2x)^2}{2}
+\end{array}
+\biggr| = 
+\lim\limits_{x\rightarrow 0+}\biggl(\dfrac{\sin{x^4}\ln2}{2x^2}\biggr)^{\frac{x+2}{x}} = \\
+\lim\limits_{x\rightarrow 0+}\biggl(1+\dfrac{\sin{x^4}\ln2-4x^4}{2x^2}\biggr)^{\dfrac{4x^4}{\sin{x^4}\ln2-4x^4}\dfrac{(\sin{x^4}\ln2-4x^4)(x+2)}{x}} = \\
+\mathbf{e}^{\lim\limits_{x\rightarrow 0+}{((\sin{x^4}\ln2-4x^4)(x+2))/4x^5}} =
+\biggl|
+\begin{array}{l}
+\sin{x^4} \sim x^4
+\end{array}
+\biggr| = 
+\mathbf{e}^{\lim\limits_{x\rightarrow 0+}{(x^4(\ln2-4)(x+2))/4x^5}} = \\
+\mathbf{e}^{\lim\limits_{x\rightarrow 0+}{((\ln2-4)(0+2))/4x}} =
+\mathbf{e}^{\lim\limits_{x\rightarrow 0+}{(\ln2-4)/0}} =
+\mathbf{e}^{-\infty} = 0. \\ 
+\text{   (поскольку  } (\ln2-4)<0 \Rightarrow \mathbf{e}^{-\infty} \text{ ).}
+\end{array}
+$$
+\text{\bf(е):}
+$$
+\begin{array}{l}
+\lim\limits_{x\rightarrow \pi}\dfrac{1+\cos{3x}}{\sin^2(7x)} = 
+\biggl|
+\begin{array}{ll}
+t = \pi - x & \cos(3(\pi-t)) = -\cos{3t}	\\ 
+t\rightarrow0 & \sin^2(7(\pi-t)) = \sin^2(7t)
+\end{array}
+\biggr| =
+\lim\limits_{t\rightarrow 0}\dfrac{1-\cos{3t}}{\sin^2(7t)} = \\
+= \biggl|
+\begin{array}{l}
+1-\cos{3t} \sim \frac{(3t)^2}{2}	\\ 
+\sin(7t) \sim 7t
+\end{array}
+\biggr| =
+\lim\limits_{t\rightarrow 0}\dfrac{(3t)^2}{2(7t)^2} = 
+\lim\limits_{t\rightarrow 0}\dfrac{(9t^2}{98t^2} = \dfrac{9}{98}.
+\end{array}
+$$
+
+
+% ---------------------------- Problem 3----------------------------------
+\subsubsection*{\center Задача № 3.}
+{\bf Условие.~}\\
+\text{\bf(а):} Показать, что данные функции
+$f(x)$ и $g(x)$ являются бесконечно малыми или бесконечно большими
+при указанном стремлении аргумента. \\
+\text{\bf(б):} Для каждой функции $f(x)$ и $g(x)$ записать главную часть
+(эквивалентную ей функцию)  вида $C(x-x_0)^{\alpha}$ при $x\rightarrow x_0$ или $Cx^{\alpha}$
+при $x\rightarrow\infty$, указать их порядки малости (роста). \\
+\text{\bf(в):} Сравнить функции $f(x)$ и $g(x)$ при указанном стремлении.
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	№ варианта & функции $f(x)$ и $g(x)$ & стремление \\[6pt]
+	%\hline
+	17 & $f(x) = \sqrt{1+\sqrt{x}}-1,~g(x)=\ln{1+\sqrt{x^2+x}}$ & $x\rightarrow0+$ \\
+	\hline
+	\end{tabular}
+\end{center}
+{\bf Решение.~}\\
+\text{\bf(а):}~Покажем, что $f(x)$ и $g(x)$ бесконечно малые функции,
+$$
+\begin{array}{cc}
+\lim\limits_{x\rightarrow 0+}f(x) = \lim\limits_{x\rightarrow\infty}\sqrt{1+\sqrt{x}}-1 =
+	\lim\limits_{x\rightarrow 0+}{\sqrt{1+\sqrt{0}}-1} =
+	    0. \\
+\lim\limits_{x\rightarrow 0+}g(x) = \lim\limits_{x\rightarrow\infty}{\ln{1+\sqrt{x^2+x}}} = 
+	\lim\limits_{x\rightarrow 0+}{\ln{1+\sqrt{0^2+0}}} = 
+		\lim\limits_{x\rightarrow 0+}{\ln{1+0}} = 0.
+\end{array}
+$$	
+\text{\bf(б):}~Так как $f(x)$ и $g(x)$ бесконечно малые функции и $x\rightarrow 0+$, то эквивалентными им будут функции вида 
+$Cx^{\alpha}$. Найдём эквивалентную для $f(x)$ из условия
+$$
+\lim\limits_{x\rightarrow\infty}\dfrac{f(x)}{x^{\alpha}} = \text{С},
+$$
+где $C$ --- некоторая константа, $\alpha$ - порядок малости. Рассмотрим предел
+$$
+\begin{array}{1}
+\lim\limits_{x\rightarrow\infty}\dfrac{f(x)}{x^{\alpha}} = 
+\lim\limits_{x\rightarrow\infty}\dfrac{\sqrt{1+\sqrt{x}}-1}{x^{\alpha}} = 
+\lim\limits_{x\rightarrow\infty}{\dfrac{1+\sqrt{x}-1}{x^{\alpha}(\sqrt{1+\sqrt{x}}+1}}) = 
+\lim\limits_{x\rightarrow\infty}\dfrac{x^{\frac{1}{2}}}{2x^{\alpha}}.
+\end{array}
+$$
+При $\alpha=\dfrac{1}{2}$ последний предел равен $\dfrac{1}{2}$, отсюда $C=\dfrac{1}{2}$ и 
+$$
+f(x)\sim \dfrac{\sqrt{x}}{2}~\text{при}~x\rightarrow 0+.
+$$
+Аналогично, рассмотрим предел
+$$
+\begin{array}{1}
+\lim\limits_{x\rightarrow 0+}{\dfrac{\ln(1+\sqrt{x^2+x})}{x^{\alpha}}} = 
+\biggl|
+\begin{array}{l}
+\ln(1+\sqrt{x^2+x}) \sim x^2+x
+\end{array}
+\biggr| = 
+\lim\limits_{x\rightarrow 0+}{\dfrac{\sqrt{x^2+x}}{x^{\alpha}}} = 
+\lim\limits_{x\rightarrow 0+}{\dfrac{\sqrt{x}\sqrt{x+1}}{x^{\alpha}}}.
+\end{array}
+$$
+При $\alpha=\dfrac{1}{2}$ последний предел равен $1$, отсюда $C=1$ и
+$$
+g(x)\sim \sqrt{x}~\text{при}~x\rightarrow 0+.
+$$
+\text{\bf(в):}~Для сравнения функций $f(x)$ и $g(x)$ рассмотрим предел их отношения при указанном стремлении
+$$
+\lim\limits_{x\rightarrow 0+}\dfrac{f(x)}{g(x)}.
+$$
+Применим эквивалентности, определенные в пункте (б), получим
+$$
+\lim\limits_{x\rightarrow 0+}\dfrac{f(x)}{g(x)} = 
+\lim\limits_{x\rightarrow 0+}\dfrac{\dfrac{\sqrt{x}}{2}}{\sqrt{x}} = 
+\lim\limits_{x\rightarrow 0+} x = \dfrac{1}{2}.  
+$$
+Отсюда, $f(x)$ является бесконечно малой функцией одного порядка, относительно $g(x)$.
+
+% ---------------------------- Problem 4----------------------------------
+\subsubsection*{\center Задача № 4.}
+{\bf Условие.~}\\
+Найти точки разрыва функции 
+$$
+y = f(x) \equiv 
+	\begin{cases}
+	\arcctg\biggl(\dfrac{x}{x+1}\biggr),				&\quad x\leq0, \\
+	\mathbf{e}^{\dfrac{1}{x}},         &\quad x>0.
+	\end{cases}
+$$ 
+и определить их характер. Построить фрагменты графика функции в окрестности каждой точки разрыва. \\
+{\bf Решение.~}	
+Особыми точками являются точки $x=-1$ и $x=0$. Рассмотрим односторонние пределы в окресности каждой из особых точек
+$$
+\begin{array}{ll}
+\lim\limits_{x\rightarrow -1-} \arcctg\biggl(\dfrac{x}{x+1}\biggr) = \dfrac{\pi}{2}, &
+\lim\limits_{x\rightarrow -1+} \arcctg\biggl(\dfrac{x}{x+1}\biggr) = -\dfrac{\pi}{2},  \\[6pt]
+\lim\limits_{x\rightarrow 0-} \arcctg(e^{1/x}) = 0, &
+\lim\limits_{x\rightarrow 0+} \arcctg(e^{1/x}) = \infty.  
+\end{array}
+$$
+Следовательно, точка $x=-1$ - точка неустранимого разрыва первого рода, а точка $x=0$ - точка разрыва второго рода.
+\begin{center}
+\begin{tikzpicture}
+\def\func{rad(atan(x/(x+1)} 
+
+\begin{axis}[xmin=-4.75,
+			xmax=9.5, 
+			ymin=-2,
+			ymax=4.5,
+			width=\textwidth,
+			height=0.75\textwidth,
+			axis x line=middle,
+			axis y line=middle, 
+			every axis x label/.style={at={(current axis.right of origin)},anchor=west},
+			every inner x axis line/.append style={|-latex'},
+			every inner y axis line/.append style={|-latex'},
+			minor tick num=1,			
+			axis equal=true,
+			xlabel=$x$, 
+			ylabel=$y$,          
+			samples=600,
+			legend style={draw=none},
+			legend cell align=center,
+			clip=true,
+]
+\addplot[color=black, line width=1.5pt,domain=-4.75:-1] {\func};
+\addplot[color=black, line width=1.5pt,domain=-1:0]{\func};
+\addplot[color=red, line width=1.5pt,domain=0:10]{exp(pow(\x,-1))};
+\draw[dashed] ({axis cs:-1,0}|-{rel axis cs:0,0}) -- ({axis cs:-1,0}|-{rel axis cs:0,1});
+\addplot[
+mark=*,
+mark options={fill=white, draw=black},
+only marks,
+] coordinates {(-1, 1.5708) (-1, -1.5708)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{document}
